@@ -32,15 +32,14 @@ The Expense Reimbursement System will manage the process of reimbursing employee
 - Add Monitoring/Logs/Alerts
 
 # Getting Started
-- git clone 
-(include git clone command) (include all environment setup steps)
+- git clone https://github.com/ijayzo/Expense-Reimbursement-System.git
+- Run com.example.demo.ReimburseApplication as a Java Application.
+Runs on port of Spring Boot - 8080
+- Run com.example.demo.EmailSenderApplication as a Java Application.
+Runs on port of Spring Boot - 8081 
 
-Be sure to include BOTH Windows and Unix command
-Be sure to mention if the commands only work on a specific platform (eg. AWS, GCP)
+# Usage
 
-All the code required to get started
-Images of what it should look like
-Usage
 Here, you instruct other people on how to use your project after they’ve installed it. This would also be a good place to include screenshots of your project in action.
 
 Contributors
