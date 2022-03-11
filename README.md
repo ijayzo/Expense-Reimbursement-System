@@ -33,17 +33,51 @@ The Expense Reimbursement System will manage the process of reimbursing employee
 
 # Getting Started
 - git clone https://github.com/ijayzo/Expense-Reimbursement-System.git
+
+# Usage of Reimburse Application
 - Run com.example.demo.ReimburseApplication as a Java Application.
 Runs on port of Spring Boot - 8080
+
+API Usage 
+
+- 
+
 - Run com.example.demo.EmailSenderApplication as a Java Application.
 Runs on port of Spring Boot - 8081 
+Run com.example.demo.EmployeeTravelPackageApplication as a Java Application.
 
-# Usage
+Runs on port of Spring Boot - 8080
 
-Here, you instruct other people on how to use your project after they’ve installed it. This would also be a good place to include screenshots of your project in action.
+API usage
 
-Contributors
-Here list the people who have contributed to this project. (ignore this section, if its a solo project)
-
-License
-This project uses the following license: <license_name>.
+- http://localhost:8080/employee/get-req-by-empid/{empID}
+```text
+Gets All Reimbursement Requests by Employee ID{id}
+```
+- http://localhost:8080/employee/newrequest
+```JSON
+{
+  "reimEmpId" : "5",
+  "date" : "Sept. 6, 2021",
+  "status" : "Approved",
+  "amount" : "1500"
+}
+```
+- http://localhost:8080/manager/get-req-by-empid/{empID}
+```text
+Gets All Reimbursement Requests by Employee ID{id}.
+```
+- http://localhost:8080/manager/status-update/{reqid}
+```text
+Patch Request that takes Reimbursement Request ID{reqid} in URL and takes a JSON body of "Pending", "Denied", or "Approved"; there is a check to make sure only these words are inputted. A manager cannot change a Denied Request.
+Using the Reimbursement Request ID, this Controller grabs the Employee's email, the Reimbursement Amount, and the Reimbursement Status; they will be sent to the EmailSenderApplication to be used in e-Mail sent. 
+```
+- http://localhost:8080/reimman/get-req-by-empid/{empID}
+```text
+Gets All Reimbursement Requests by Employee ID{id}.
+```
+- http://localhost:8080/reimman/status-update/{reqid}
+```text
+Patch Request that takes Reimbursement Request ID{reqid} in URL and takes a JSON body of "Pending", "Denied", or "Approved"; there is a check to make sure only these words are inputted. 
+Using the Reimbursement Request ID, this Controller grabs the Employee's email, the Reimbursement Amount, and the Reimbursement Status; they will be sent to the EmailSenderApplication to be used in e-Mail sent. 
+```
