@@ -1,0 +1,60 @@
+pipeline {
+ environment {
+        registry = 'ijayzo/proj1'
+        dockerHubCreds = 'docker_hub'
+        dockerImage = ''
+    }
+ agent any
+    stages {
+        stage('Test') {
+            when {
+                branch 'feature/*'
+            }
+        steps {
+            withMaven {
+                cleanWs()
+                sh 'test'
+            }
+         }
+       }
+       stage('Build') {
+          when {
+             branch 'main'
+          }
+          steps {
+            withMaven {
+
+              sh 'mvn -f Reimburse/pom.xml clean install'
+              sh 'mvn -f Reimburse/pom.xml clean package -DskipTests'
+
+            }
+          }
+       }
+       stage('Docker Build') {
+           when {
+               branch 'main'
+           }
+           steps {
+            dir('/Reimburse') {
+               script {
+                  echo "$registry:$currentBuild.number"
+                  dockerImage = docker.build "$registry"
+               }
+            }
+           }
+       }
+
+       stage('Docker Deliver') {
+           when {
+               branch 'main'
+           }
+           steps {
+               script {
+                   docker.withRegistry('', dockerHubCreds) {
+                       dockerImage.push("$currentBuild.number")
+                       dockerImage.push("latest")
+                   }
+               }
+           }
+        }
+      } }
