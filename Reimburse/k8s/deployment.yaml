@@ -1,42 +1,35 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: java-sre-deployment
+  name: reimburse-deployment
   labels:
-    app: sre-demo
+    app: reimburse
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: sre-demo
+      app: reimburse
   template:
     metadata:
       labels:
-        app: sre-demo
+        app: reimburse
     spec:
       containers:
-        - image: ajduet/sre-demo:%TAG%
+        - image: ijayzo/proj1:%TAG%
           imagePullPolicy: Always
-          name: sre-demo
+          name: reimburse
           ports:
             - containerPort: 8080
-          livenessProbe:
-            httpGet:
-              path: /hw
-              port: 8080
-          readinessProbe:
-            httpGet:
-              path: /hw
-              port: 8080
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: demo-service
+  name: reimburse-service
 spec:
   selector:
-    app: sre-demo
+    app: reimburse
   type: NodePort
   ports:
     - port: 8080
       targetPort: 8080
+---
