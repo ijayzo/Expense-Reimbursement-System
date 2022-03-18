@@ -42,7 +42,7 @@ pipeline {
                }
             }
            }
-       }
+       
 
        stage('Docker Deliver') {
            when {
@@ -95,5 +95,5 @@ stage('Wait for approval') {
                     ])
                                }
                             }
-                        } 
+    } }
 
