@@ -83,8 +83,8 @@ stage('Wait for approval') {
                     branch 'main'
                 }
                 steps{
-                    sh 'sed -i "s/%TAG%/$BUILD_NUMBER/g" ./Reimburse/k8s/deployment.yaml'
-                    sh 'cat ./api1Reimb/k8s/deployment.yaml'
+                    sh 'sed -i "s/%TAG%/$BUILD_NUMBER/g" ./Reimburse/k8s/deployment.yml'
+                    sh 'cat ./Reimburse/k8s/deployment.yml'
                     step([$class: 'KubernetesEngineBuilder',
                         projectId: 'revbanking',
                         clusterName: 'revbanking-gke',
