@@ -86,11 +86,11 @@ stage('Wait for approval') {
                     sh 'sed -i "s/%TAG%/$BUILD_NUMBER/g" ./Reimburse/k8s/deployment.yml'
                     sh 'cat ./api1Reimb/k8s/deployment.yml'
                     step([$class: 'KubernetesEngineBuilder',
-                        projectId: 'spherical-gate-338602',
-                        clusterName: 'spherical-gate-338602-gke',
+                        projectId: 'revbanking',
+                        clusterName: 'revbanking-gke',
                         zone: 'us-central1',
                         manifestPattern: 'Reimburse/k8s/',
-                        credentialsId: 'spherical-gate-338602',
+                        credentialsId: 'revbanking',
                         verifyDeployments: true
                     ])
                                }
