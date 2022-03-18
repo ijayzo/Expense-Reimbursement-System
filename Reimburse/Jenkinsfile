@@ -29,7 +29,7 @@ pipeline {
 
             }
           }
-       
+       }
        stage('Docker Build') {
            when {
                branch 'main'
@@ -42,7 +42,7 @@ pipeline {
                }
             }
            }
-       
+       }
 
        stage('Docker Deliver') {
            when {
@@ -57,7 +57,7 @@ pipeline {
                }
            }
         }
-      }
+      
 stage('Wait for approval') {
         when {
             branch 'main'
@@ -95,5 +95,4 @@ stage('Wait for approval') {
                     ])
                                }
                             }
-    } }
-}
+    } 
